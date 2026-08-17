@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ meta.name }} — DocGenius{% endblock %}
+{% block content %}
+<section class="tool-page">
+  <a class="back" href="{{ url_for('main.home') }}">← All tools</a>
+  <div class="tool-title"><div class="big-icon">{{ meta.icon }}</div><div><span class="eyebrow">{{ meta.category }}</span><h1>{{ meta.name }}</h1><p>{{ meta.description }}</p></div></div>
+  <form method="post" enctype="multipart/form-data" class="upload-card">
+    <label class="drop" id="drop">
+      <input id="fileInput" type="file" name="files" accept="{{ meta.accept }}" {% if meta.multiple %}multiple{% endif %}>
+      <div class="upload-icon">↑</div><h2>Drop your file here</h2><p>or click to browse · Max 100 MB</p><div id="fileNames"></div>
+    </label>
+    <div class="options">
+      {% if slug in ["rotate-pdf"] %}<label>Rotation <select name="angle"><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option></select></label>{% endif %}
+      {% if slug in ["extract-pages","delete-pages"] %}<label>Pages <input name="pages" placeholder="Example: 1,3,5"></label>{% endif %}
+      {% if slug=="protect-pdf" %}<label>Password <input type="password" name="password" required></label>{% endif %}
+      {% if slug=="unlock-pdf" %}<label>Password <input type="password" name="password" required></label>{% endif %}
+      {% if slug=="watermark-pdf" %}<label>Watermark text <input name="text" value="DocGenius"></label>{% endif %}
+      {% if slug=="add-blank-pages" %}<label>Blank pages <input type="number" name="count" value="1" min="1" max="50"></label>{% endif %}
+      {% if slug=="text-to-pdf" %}<label>Text <textarea name="text" rows="8" placeholder="Type your document text..."></textarea></label>{% endif %}
+    </div>
+    <button class="btn primary full" type="submit">Run {{ meta.name }} →</button>
+  </form>
+  <div class="tip"><b>Privacy:</b> Core PDF processing runs on your Flask server. Delete uploaded files automatically in production after processing.</div>
+</section>
+{% endblock %}

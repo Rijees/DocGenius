@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}DocGenius — Smart PDF Toolkit{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">SMART DOCUMENT WORKSPACE</span>
+    <h1>Every PDF tool.<br><span>One powerful workspace.</span></h1>
+    <p>Merge, split, compress, convert, edit, secure and prepare documents with DocGenius.</p>
+    <div class="hero-actions"><a class="btn primary" href="#tools">Explore 40+ tools</a><a class="btn ghost" href="{{ url_for('main.about') }}">See future features</a></div>
+  </div>
+  <div class="hero-card">
+    <div class="orb">✦</div>
+    <strong>DocGenius AI</strong>
+    <span>Document intelligence layer</span>
+    <div class="mini-grid"><div>PDF Chat</div><div>Summary</div><div>OCR</div><div>E-Sign</div></div>
+  </div>
+</section>
+
+<section class="stats">
+  <div><b>40+</b><span>Tools</span></div><div><b>100 MB</b><span>Upload limit</span></div><div><b>100%</b><span>Local processing for core tools</span></div><div><b>24/7</b><span>Ready for deployment</span></div>
+</section>
+
+<section id="tools" class="tool-section">
+  <div class="section-head"><div><span class="eyebrow">TOOLBOX</span><h2>Choose a document tool</h2></div><input id="search" class="search" placeholder="Search tools..."></div>
+  {% for category, tools in categories.items() %}
+  <div class="category"><h3>{{ category }}</h3><div class="grid">
+    {% for slug, meta in tools %}
+    <a class="tool-card" data-name="{{ meta.name|lower }}" href="{{ url_for('main.tool', slug=slug) }}">
+      <div class="icon">{{ meta.icon }}</div><div><strong>{{ meta.name }}</strong><p>{{ meta.description }}</p></div><span class="arrow">→</span>
+    </a>
+    {% endfor %}
+  </div></div>
+  {% endfor %}
+</section>
+
+<section class="future">
+  <span class="eyebrow">ROADMAP</span><h2>Built for the next generation of documents</h2>
+  <div class="future-grid">
+    <div><b>✦ AI Document Chat</b><p>Ask questions against uploaded documents.</p></div>
+    <div><b>◉ Smart OCR</b><p>Extract searchable text from scanned pages.</p></div>
+    <div><b>⌁ Workflow Automation</b><p>Chain several PDF operations into one workflow.</p></div>
+    <div><b>☁ Team Workspace</b><p>Shared documents, roles, activity and versioning.</p></div>
+  </div>
+</section>
+{% endblock %}

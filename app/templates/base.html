@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}DocGenius{% endblock %}</title>
+<meta name="description" content="DocGenius smart PDF toolkit">
+<link rel="stylesheet" href="{{ url_for('main.static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="{{ url_for('main.home') }}"><span class="brand-mark">D</span><span>DocGenius</span></a>
+  <nav class="main-nav">
+
+    <a href="/">Home</a>
+
+    <div class="nav-dropdown">
+        <button class="nav-link" id="toolsMenuBtn">
+            PDF Tools ▾
+        </button>
+
+        <div class="nav-menu" id="toolsMenu">
+
+            <section id="organize-pdf" class="category">
+    <h2>Organize PDF</h2>
+
+    <!-- Merge PDF -->
+    <!-- Split PDF -->
+    <!-- Extract Pages -->
+</section>
+
+
+<section id="optimize-pdf" class="category">
+    <h2>Optimize PDF</h2>
+
+    <!-- Compress PDF -->
+</section>
+
+
+<section id="convert-from-pdf" class="category">
+    <h2>Convert from PDF</h2>
+
+    <!-- PDF to JPG -->
+    <!-- PDF to Word -->
+    <!-- PDF to Excel -->
+</section>
+
+
+<section id="convert-to-pdf" class="category">
+    <h2>Convert to PDF</h2>
+
+    <!-- JPG to PDF -->
+    <!-- Word to PDF -->
+</section>
+
+
+<section id="pdf-security" class="category">
+    <h2>PDF Security</h2>
+
+    <!-- Protect PDF -->
+    <!-- Unlock PDF -->
+</section>
+
+
+<section id="edit-pdf" class="category">
+    <h2>Edit PDF</h2>
+
+    <!-- Watermark -->
+    <!-- Page Numbers -->
+    <!-- Rotate -->
+</section>
+
+
+<section id="pdf-utilities" class="category">
+    <h2>PDF Utilities</h2>
+
+    <!-- PDF Information -->
+    <!-- Metadata -->
+</section>
+
+
+<section id="extract-data" class="category">
+    <h2>Extract Data</h2>
+
+    <!-- PDF to Text -->
+    <!-- Extract Images -->
+</section>
+
+
+<section id="advanced" class="category">
+    <h2>Advanced</h2>
+
+    <!-- PDF Compare -->
+    <!-- PDF Booklet -->
+</section>
+
+
+<section id="ai-features" class="category">
+    <h2>AI Features</h2>
+
+    <!-- AI PDF Chat -->
+    <!-- AI Summary -->
+</section>
+
+
+<section id="future-tools" class="category">
+    <h2>Future Tools</h2>
+
+    <!-- OCR -->
+    <!-- E-Sign -->
+    <!-- Scanner -->
+</section>
+
+        </div>
+    </div>
+
+    <a href="#tools">All Tools</a>
+    <a href="/about">About</a>
+
+</nav>
+  <button class="theme" id="themeBtn" aria-label="Toggle theme">☼</button>
+</header>
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="alerts">
+{% for category,msg in messages %}<div class="alert {{category}}">{{msg}}</div>{% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+<main>{% block content %}{% endblock %}</main>
+<footer><div>© 2026 DocGenius · Smart document tools</div><div><a href="{{ url_for('main.privacy') }}">Privacy</a></div></footer>
+<script src="{{ url_for('main.static', filename='js/app.js') }}"></script>
+</body>
+</html>
